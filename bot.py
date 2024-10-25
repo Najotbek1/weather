@@ -1,8 +1,22 @@
-
-# # To'liq dastur
 import requests
 import telebot
 from telebot import types
+from flask import Flask, request
+app = Flask(__name__)
+application = app
+
+@app.route("/bot", methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "!", 200
+        
+@app.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url="https://najotbek.uz/") # этот url нужно заменить на url вашего бота!
+    return "!", 200
+# # To'liq dastur
+
 
 bot = telebot.TeleBot("7669799368:AAEwga1aMDG0xYOFMlyiwOAanzxxafB7YCU")
 
